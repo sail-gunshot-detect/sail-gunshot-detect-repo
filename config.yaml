@@ -1,0 +1,28 @@
+data:
+  # Audio processing parameters
+  sample_rate: 8000
+  mel_spec_length: 32000
+  frame_length: 256
+  frame_step: 128
+  mel_bins: 64
+  fmax: 4000
+  fmin: 100
+  
+  # Training data parameters
+  desired_sr: 8000
+  top_db: 80
+
+# Training parameters (optional - can be overridden by command line args)
+training:
+  batch_size: 64
+  epochs: 40
+  learning_rate: 0.0001
+  seed: 42
+  
+  # Data pipeline parameters
+  shuffle_buffer_size: 16384
+
+# Evaluation parameters
+evaluation:
+  default_threshold: 0.5
+  inference_batch_size: 128
