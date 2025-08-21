@@ -9,6 +9,7 @@ import math
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, SeparableConv2D, BatchNormalization, Activation, MaxPooling2D, Reshape, Conv1D, MaxPooling1D, GRU, GlobalMaxPooling1D, Dense
 import psutil
+from augmentations import augment_waveform_tf, augment_spec_tf
 
 
 def load_config(config_path='config.yaml'):
@@ -184,7 +185,9 @@ def prepare_data(train_neg_path, train_pos_path, val_neg_path, val_pos_path, see
     # Create TensorFlow datasets
     train = tf.data.Dataset.from_tensor_slices((t_filepaths, t_labels))
     train = train.map(load_wav_tf, num_parallel_calls=tf.data.AUTOTUNE)
+    train = train.map(augment_waveform_tf, num_parallel_calls=tf.data.AUTOTUNE)
     train = train.map(preprocess_mel_tf, num_parallel_calls=tf.data.AUTOTUNE)
+    train = train.map(augment_spec_tf, num_parallel_calls=tf.data.AUTOTUNE)
     train = train.map(expand_spec_dim_tf, num_parallel_calls=tf.data.AUTOTUNE)
     train = train.cache()
     train = train.shuffle(buffer_size=training_config['shuffle_buffer_size'], reshuffle_each_iteration=True)
