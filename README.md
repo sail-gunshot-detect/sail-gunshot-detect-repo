@@ -11,5 +11,6 @@ https://github.com/DenaJGibbon/Vietnam-Gunshots
 
 Usage:
 1. Serialize the existing model or train your own using `serialize.py`
-2. Train or evalute your own model using `train.py` and `evaluate.py`
+2. (Optionally) Train your own model using `train.py`
+3. Evaluate the existing model on your own datasets using `evaluate.py`
 3. Test the SAIL sensor integration function using `sail.py`
