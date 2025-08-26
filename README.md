@@ -1,5 +1,5 @@
 ## Lightweight Rainforest Gunshot Detection & Sensor Integration
-### Towards Effective Real-Time Poaching & Gunshot Detection
+_Towards Effective Real-Time Poaching & Gunshot Detection_
 
 ---
 
@@ -13,4 +13,4 @@ Usage:
 1. Serialize the existing model or train your own using `serialize.py`
 2. (Optionally) Train your own model using `train.py`
 3. Evaluate the existing model on your own datasets using `evaluate.py`
-3. Test the SAIL sensor integration function using `sail.py`
+3. Use and test the SAIL sensor integration function using `sail.py`
