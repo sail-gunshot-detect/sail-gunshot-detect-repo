@@ -1,8 +1,6 @@
 ## Lightweight Rainforest Gunshot Detection Model & Sensor Integration Function
 _Fighting Poaching Through Targeted Deep Learning and Sensor Integration_
 
----
-
 Datasets:
 1. Training & Validation: Belizean dataset collected by Katsis et al. (2022)
 https://data.mendeley.com/datasets/x48cwz364j/3
@@ -34,3 +32,11 @@ The `config.yaml` file contains configuration parameters for audio processing, m
    ```
 
    then applies a sigmoid transformation. Predictions can be provided as Python list format "[0.1, 0.2, 0.3]" or comma-separated values "0.1, 0.2, 0.3". The --start parameter (default: 1) specifies which column index to begin using predictions from.
+
+5. Run comprehensive CDC simulations using `simulation.py`
+   Run: `python simulation.py --model_path /path/to/model.keras --run_name my_experiment --dataset small_test --th 0.5 --runs 10 --seed 42 --run_note "Experiment description"`
+   This script performs comprehensive Change Detection Classification (CDC) simulations for gunshot detection. It loads a trained model, processes audio datasets with data augmentation, generates multiple prediction variants using SAIL integration, and saves detailed results. The script supports multiple datasets (small_test, big_test, b_val) and generates both per-run metrics and flattened CSV files for further statistical analysis.
+
+6. Perform statistical analysis of simulation results using `wilcoxon.py`
+   Run: `python wilcoxon.py --flat_csv results.csv --threshold 0.5 --outdir analysis_output`
+   This script performs robust statistical analysis of simulation results using Wilcoxon signed-rank tests. It supports both per-run and per-file analyses, comparing different prediction methods (inference, SAIL, fancy integration). The script can also perform one-sample tests against known baseline FPR values and generates comprehensive statistical summaries, histograms, and boxplots. Optional arguments include --perrun_csv for per-run metrics, --baseline_fpr for baseline comparisons, and --alternative for hypothesis testing direction.
